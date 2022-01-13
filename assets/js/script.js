@@ -66,6 +66,7 @@ var auditTask = function(taskEl) {
   } else if (moment().diff(time, "days") >= -2) {	// less than 2 days into the future
     $(taskEl).addClass("list-group-item-warning");
   }
+	
 };
 
 
@@ -303,8 +304,12 @@ $("#modalDueDate").datepicker({
 	// minDate: 1
 });
 
-
-
+//run auditTask() periodically
+setInterval(function () {
+  $(".card .list-group-item").each(function(index, el) {
+    auditTask(el);
+  });
+}, 1800000);	//30 minutes
 
 
 
